@@ -37,7 +37,7 @@ const exp2 = store.dispatch(
     createdAt: 200
   })
 );
-store.dispatch(removeExpense({ id: exp2.expense.id }));
+// store.dispatch(removeExpense({ id: exp2.expense.id }));
 store.dispatch(
   editExpense(exp1.expense.id, {
     description: 'updated desc',
@@ -46,16 +46,16 @@ store.dispatch(
   })
 );
 
-store.dispatch(setTextFilter(''));
+// store.dispatch(setTextFilter(''));
 store.dispatch(setTextFilter('rent'));
 
-store.dispatch(sortByAmount());
-store.dispatch(sortByDate());
+// store.dispatch(sortByAmount());
+// store.dispatch(sortByDate());
 
-store.dispatch(setStartDate(100));
-store.dispatch(setStartDate());
-store.dispatch(setEndDate(200));
-store.dispatch(setEndDate());
+// store.dispatch(setStartDate(100));
+// store.dispatch(setStartDate());
+// store.dispatch(setEndDate(200));
+// store.dispatch(setEndDate());
 
 const storeState = store.getState();
 console.log(getVisibleExpenses(storeState.expenses, storeState.filter));
