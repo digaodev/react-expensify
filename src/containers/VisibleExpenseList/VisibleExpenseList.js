@@ -2,12 +2,14 @@ import {
   connect
 } from 'react-redux';
 
+import selectExpenses from '../../selectors/expenses';
+
 import ExpenseList from '../../components/ExpenseList';
 
 const mapStateToProps = state => {
+  console.log('state: ',state);
   return {
-    expenses: state.expenses,
-    filters: state.filters
+    expenses: selectExpenses(state.expenses, state.filter)
   };
 };
 

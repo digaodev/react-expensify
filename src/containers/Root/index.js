@@ -47,7 +47,7 @@ store.dispatch(
 );
 
 // store.dispatch(setTextFilter(''));
-store.dispatch(setTextFilter('rent'));
+store.dispatch(setTextFilter('updated'));
 
 // store.dispatch(sortByAmount());
 // store.dispatch(sortByDate());
