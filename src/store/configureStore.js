@@ -5,14 +5,14 @@ import {
 
 import {
   expenses,
-  filter
+  filters
 } from '../reducers';
 
 export default () => {
   const store = createStore(
     combineReducers({
       expenses,
-      filter
+      filters
     })
   );
 

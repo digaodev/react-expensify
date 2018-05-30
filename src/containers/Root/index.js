@@ -16,7 +16,7 @@ import {
   sortByDate,
   setStartDate,
   setEndDate
-} from '../../actions/filter';
+} from '../../actions/filters';
 
 const store = configureStore();
 store.subscribe(() => console.log(store.getState()));
@@ -24,32 +24,38 @@ store.subscribe(() => console.log(store.getState()));
 const exp1 = store.dispatch(
   addExpense({
     description: 'rent',
-    note: 'some note',
-    amount: 1000,
-    createdAt: 100
+    note: 'some note on rent',
+    amount: 4500,
+    createdAt: 2000
   })
 );
 const exp2 = store.dispatch(
   addExpense({
-    description: 'some desc 2',
-    note: 'some note 2',
-    amount: 2000,
-    createdAt: 200
+    description: 'water',
+    note: 'some note on water',
+    createdAt: 1000
+  })
+);
+const exp3 = store.dispatch(
+  addExpense({
+    description: 'amenities',
+    note: 'some note on amenities',
+    amount: 8000
   })
 );
 // store.dispatch(removeExpense({ id: exp2.expense.id }));
-store.dispatch(
-  editExpense(exp1.expense.id, {
-    description: 'updated desc',
-    note: 'updated note',
-    amount: 5000
-  })
-);
+// store.dispatch(
+//   editExpense(exp1.expense.id, {
+//     description: 'updated desc',
+//     note: 'updated note',
+//     amount: 5000
+//   })
+// );
 
 // store.dispatch(setTextFilter(''));
-store.dispatch(setTextFilter('updated'));
+// store.dispatch(setTextFilter('rent'));
 
-// store.dispatch(sortByAmount());
+store.dispatch(sortByAmount());
 // store.dispatch(sortByDate());
 
 // store.dispatch(setStartDate(100));
@@ -58,7 +64,7 @@ store.dispatch(setTextFilter('updated'));
 // store.dispatch(setEndDate());
 
 const storeState = store.getState();
-console.log(getVisibleExpenses(storeState.expenses, storeState.filter));
+console.log(getVisibleExpenses(storeState.expenses, storeState.filters));
 export default class Root extends Component {
   render() {
     return (

@@ -4,7 +4,7 @@ import {
   SORTBY_DATE_FILTER,
   SET_START_DATE_FILTER,
   SET_END_DATE_FILTER
-} from '../actions/filter'
+} from '../actions/filters'
 
 const filterDefaultState = {
   text: '',
@@ -13,7 +13,7 @@ const filterDefaultState = {
   endDate: undefined
 };
 
-const filter = (state = filterDefaultState, action) => {
+const filters = (state = filterDefaultState, action) => {
   switch (action.type) {
     case SET_TEXT_FILTER:
       return {
@@ -45,4 +45,4 @@ const filter = (state = filterDefaultState, action) => {
   }
 }
 
-export default filter;
+export default filters;

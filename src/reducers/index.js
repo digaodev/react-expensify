@@ -1,7 +1,7 @@
 import expenses from "./expenses";
-import filter from "./filter";
+import filters from "./filters";
 
 export {
   expenses,
-  filter
+  filters
 };
