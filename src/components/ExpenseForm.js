@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
 
+// https://github.com/airbnb/react-dates
+import 'react-dates/initialize';
+import moment from 'moment';
+import { SingleDatePicker } from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css';
+
 class ExpenseForm extends Component {
   state = {
     description: '',
     note: '',
-    amount: ''
+    amount: '',
+    createdAt: moment(),
+    calendarFocused: false,
+    error: ''
   };
 
   handleDescriptionChange = value => {
-    this.state(() => ({ description: value }));
+    this.setState(() => ({ description: value }));
   };
 
   handleNoteChange = value => {
-    this.state(() => ({ note: value }));
+    this.setState(() => ({ note: value }));
   };
 
   handleAmountChange = value => {
@@ -21,12 +30,51 @@ class ExpenseForm extends Component {
     }
   };
 
+  handleDateChange = date => {
+    this.setState(() => ({ createdAt: date }));
+  };
+
+  handleDateFocusChange = focused => {
+    this.setState(() => ({ calendarFocused: focused }));
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    const { description, amount, note, createdAt } = this.state;
+
+    if (!description || !amount) {
+      this.setState(() => ({
+        error: 'Please provide a Description and an Amount.'
+      }));
+    } else {
+      this.setState(() => ({ error: '' }));
+
+      const newExpense = {
+        description,
+        amount: parseFloat(amount, 10) * 100,
+        note,
+        createdAt: createdAt.valueOf()
+      };
+      this.props.onSubmit(newExpense);
+    }
+  };
+
   render() {
-    const { description, note, amount } = this.state;
+    const {
+      description,
+      note,
+      amount,
+      createdAt,
+      calendarFocused,
+      error
+    } = this.state;
 
     return (
       <div>
-        <form>
+        {error && <p>{error}</p>}
+
+        <form onSubmit={this.handleSubmit}>
           <input
             type="text"
             placeholder="Description"
@@ -40,6 +88,18 @@ class ExpenseForm extends Component {
             placeholder="Amount"
             value={amount}
             onChange={e => this.handleAmountChange(e.target.value)}
+          />
+
+          <SingleDatePicker
+            date={createdAt} // momentPropTypes.momentObj or null
+            onDateChange={date => this.handleDateChange(date)} // PropTypes.func.isRequired
+            focused={calendarFocused} // PropTypes.bool
+            onFocusChange={({ focused }) => this.handleDateFocusChange(focused)} // PropTypes.func.isRequired
+            id="formDatePicker" // PropTypes.string.isRequired,
+            showDefaultInputIcon={true}
+            withFullScreenPortal={true}
+            numberOfMonths={1}
+            isOutsideRange={() => false}
           />
 
           <textarea
