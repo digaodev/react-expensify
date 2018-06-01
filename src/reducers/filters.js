@@ -4,13 +4,15 @@ import {
   SORTBY_DATE_FILTER,
   SET_START_DATE_FILTER,
   SET_END_DATE_FILTER
-} from '../actions/filters'
+} from '../actions/filters';
+
+import moment from 'moment';
 
 const filterDefaultState = {
   text: '',
   sortBy: 'date',
-  startDate: undefined,
-  endDate: undefined
+  startDate: moment().startOf('month'),
+  endDate: moment().endOf('month')
 };
 
 const filters = (state = filterDefaultState, action) => {
