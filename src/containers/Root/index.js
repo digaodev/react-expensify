@@ -18,7 +18,8 @@ import {
 } from '../../actions/filters';
 
 const store = configureStore();
-store.subscribe(() => console.log(store.getState()));
+// TODO: remove sub
+// store.subscribe(() => console.log(store.getState()));
 
 const exp1 = store.dispatch(
   addExpense({
@@ -63,7 +64,7 @@ store.dispatch(sortByAmount());
 // store.dispatch(setEndDate());
 
 const storeState = store.getState();
-console.log(getVisibleExpenses(storeState.expenses, storeState.filters));
+// console.log(getVisibleExpenses(storeState.expenses, storeState.filters));
 export default class Root extends Component {
   render() {
     return (

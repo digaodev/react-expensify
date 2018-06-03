@@ -10,7 +10,7 @@ const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
         : true;
 
       const endDateMatch = endDate
-        ? endDate.isSameOrBefore(createdAtMoment, 'day')
+        ? endDate.isSameOrAfter(createdAtMoment, 'day')
         : true;
 
       const textMatch = expense.description
