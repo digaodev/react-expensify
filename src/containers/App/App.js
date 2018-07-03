@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import '../../firebase/firebase';
-
 import './App.css';
 
 import Header from '../../components/Header';

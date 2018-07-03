@@ -4,7 +4,12 @@ import expenses from '../tests/fixtures/expenses';
 
 import expensesReducer from './expenses';
 
-import { ADD_EXPENSE, REMOVE_EXPENSE, EDIT_EXPENSE } from '../actions/expenses';
+import {
+  ADD_EXPENSE,
+  REMOVE_EXPENSE,
+  EDIT_EXPENSE,
+  SET_EXPENSES
+} from '../actions/expenses';
 
 test('should setup default state values', () => {
   const state = expensesReducer(undefined, { type: '@@INIT' });
@@ -71,4 +76,25 @@ test('should NOT edit expense if id not found', () => {
   const state = expensesReducer(expenses, action);
 
   expect(state).toEqual(expenses);
+});
+
+test('should set expenses', () => {
+  const action = {
+    type: SET_EXPENSES,
+    expenses: [expenses[0]]
+  };
+
+  const state = expensesReducer(expenses, action);
+
+  expect(state).toEqual([expenses[0]]);
+});
+test('should set expenses', () => {
+  const action = {
+    type: SET_EXPENSES,
+    expenses: [expenses[0]]
+  };
+
+  const state = expensesReducer(expenses, action);
+
+  expect(state).toEqual([expenses[0]]);
 });

@@ -1,7 +1,8 @@
 import {
   ADD_EXPENSE,
   REMOVE_EXPENSE,
-  EDIT_EXPENSE
+  EDIT_EXPENSE,
+  SET_EXPENSES
 } from '../actions/expenses'
 
 const expensesDefaultState = [];
@@ -20,6 +21,8 @@ const expenses = (state = expensesDefaultState, action) => {
 
         return {...expense, ...action.updates}
       });
+    case SET_EXPENSES:
+      return action.expenses;
     default:
       return state;
   }
