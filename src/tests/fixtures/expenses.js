@@ -2,14 +2,14 @@ import moment from 'moment';
 
 export default [
   {
-    id: 1,
+    id: '1',
     description: 'Rent',
     note: 'Pay rent',
     amount: 1500.5,
     createdAt: 0
   },
   {
-    id: 2,
+    id: '2',
     description: 'Groceries',
     note: 'Buy groceries',
     amount: 100,
@@ -18,7 +18,7 @@ export default [
       .valueOf()
   },
   {
-    id: 3,
+    id: '3',
     description: 'Credit card',
     note: 'Pay credit card',
     amount: 150,

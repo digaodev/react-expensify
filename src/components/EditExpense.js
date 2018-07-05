@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { editExpense } from '../actions/expenses';
-import { removeExpense } from '../actions/expenses';
+import { startRemoveExpense } from '../actions/expenses';
 
 import ExpenseForm from './ExpenseForm';
 
@@ -37,8 +37,7 @@ const mapDispatchToProps = (dispatch, { history, match }) => {
       history.push('/');
     },
     handleRemove: id => {
-      console.log('remove', id);
-      dispatch(removeExpense({ id }));
+      dispatch(startRemoveExpense({ id }));
       history.push('/');
     }
   };
