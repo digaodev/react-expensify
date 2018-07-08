@@ -3,9 +3,11 @@ import { Router, Route, Switch } from 'react-router-dom';
 
 import createHistory from 'history/createBrowserHistory';
 
+import PrivateRoute from '../Router/PrivateRoute';
+import PublicRoute from '../Router/PublicRoute';
+
 import './App.css';
 
-import Header from '../../components/Header';
 import ExpenseDashboard from '../../components/ExpenseDashboard';
 import AddExpense from '../../components/AddExpense';
 import EditExpense from '../../components/EditExpense';
@@ -19,13 +21,15 @@ class App extends Component {
       <div className="App">
         <Router history={history}>
           <div>
-            <Header />
-
             <Switch>
-              <Route exact path="/" component={LoginPage} />
-              <Route exact path="/dashboard" component={ExpenseDashboard} />
-              <Route path="/add" component={AddExpense} />
-              <Route path="/edit/:id" component={EditExpense} />
+              <PublicRoute exact path="/" component={LoginPage} />
+              <PrivateRoute
+                exact
+                path="/dashboard"
+                component={ExpenseDashboard}
+              />
+              <PrivateRoute path="/add" component={AddExpense} />
+              <PrivateRoute path="/edit/:id" component={EditExpense} />
               <Route component={NotFound} />
             </Switch>
           </div>
