@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
+
+import createHistory from 'history/createBrowserHistory';
 
 import './App.css';
 
@@ -10,11 +12,12 @@ import EditExpense from '../../components/EditExpense';
 import LoginPage from '../../components/LoginPage';
 import NotFound from '../../components/NotFound';
 
+export const history = createHistory();
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Router>
+        <Router history={history}>
           <div>
             <Header />
 

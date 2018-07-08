@@ -1,27 +1,48 @@
 import React from 'react';
-import { render } from 'react-dom';
-
-import registerServiceWorker from './registerServiceWorker';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
 import './firebase/firebase';
 import { firebase } from './firebase/firebase';
 
-import Root from './containers/Root';
+import configureStore from './store/configureStore';
 
-import { fetchInitialData } from './containers/Root/index';
+import { startSetExpenses } from './actions/expenses';
+import { login, logout } from './actions/auth';
 
-render(<p>Loading...</p>, document.getElementById('root'));
+import App, { history } from './containers/App/App';
 
-fetchInitialData().then(() => {
-  render(<Root />, document.getElementById('root'));
-});
+const store = configureStore();
+
+const root = (
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
+
+let hasRendered = false;
+const renderApp = () => {
+  if (!hasRendered) {
+    ReactDOM.render(root, document.getElementById('root'));
+    hasRendered = true;
+  }
+};
+
+ReactDOM.render(<p>Loading...</p>, document.getElementById('root'));
 
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
-    console.log('log in');
+    store.dispatch(login(user.uid));
+
+    store.dispatch(startSetExpenses()).then(() => {
+      renderApp();
+      if (history.location.pathname === '/') {
+        history.push('/dashboard');
+      }
+    });
   } else {
-    console.log('log out');
+    store.dispatch(logout());
+    renderApp();
+    history.push('/');
   }
 });
-
-registerServiceWorker();
