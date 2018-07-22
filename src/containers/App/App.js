@@ -6,7 +6,7 @@ import createHistory from 'history/createBrowserHistory';
 import PrivateRoute from '../Router/PrivateRoute';
 import PublicRoute from '../Router/PublicRoute';
 
-import './App.css';
+import '../../styles/styles.css';
 
 import ExpenseDashboard from '../../components/ExpenseDashboard';
 import AddExpense from '../../components/AddExpense';
