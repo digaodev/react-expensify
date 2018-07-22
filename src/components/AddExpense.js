@@ -9,9 +9,15 @@ import ExpenseForm from './ExpenseForm';
 const AddExpense = ({ onSubmit }) => {
   return (
     <div>
-      <h1>Add Expense</h1>
+      <div className="page-header">
+        <div className="content-container">
+          <h1 className="page-header__title">Add Expense</h1>
+        </div>
+      </div>
 
-      <ExpenseForm onSubmit={onSubmit} />
+      <div className="content-container">
+        <ExpenseForm onSubmit={onSubmit} />
+      </div>
     </div>
   );
 };
@@ -25,4 +31,7 @@ const mapDispatchToProps = (dispatch, { history }) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(AddExpense);
+export default connect(
+  null,
+  mapDispatchToProps
+)(AddExpense);

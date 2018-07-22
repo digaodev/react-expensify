@@ -32,39 +32,50 @@ class ExpenseListFilters extends Component {
     const { calendarFocused } = this.state;
 
     return (
-      <div>
-        <input
-          type="text"
-          name="textFilter"
-          id="textFilter"
-          value={filters.text}
-          onChange={e => handleInputChange(e.target.value)}
-        />
-        <select
-          name="sortFilter"
-          id="sortFilter"
-          onChange={e => handleSelect(e.target.value)}
-        >
-          <option value="date">Date</option>
-          <option value="amount">Amount</option>
-        </select>
+      <div className="content-container">
+        <div className="input-group">
+          <div className="input-group__item">
+            <input
+              type="text"
+              className="text-input"
+              name="textFilter"
+              id="textFilter"
+              placeholder="Search expenses..."
+              value={filters.text}
+              onChange={e => handleInputChange(e.target.value)}
+            />
+          </div>
 
-        <DateRangePicker
-          startDate={filters.startDate}
-          startDateId="startDate"
-          endDate={filters.endDate}
-          endDateId="endDate"
-          onDatesChange={handleDatesChange}
-          focusedInput={calendarFocused}
-          onFocusChange={this.handleFocusChange}
-          showDefaultInputIcon={true}
-          withFullScreenPortal={true}
-          keepOpenOnDateSelect={true}
-          showClearDates={true}
-          hideKeyboardShortcutsPanel={true}
-          numberOfMonths={1}
-          isOutsideRange={() => false}
-        />
+          <div className="input-group__item">
+            <select className="select"
+              name="sortFilter"
+              id="sortFilter"
+              onChange={e => handleSelect(e.target.value)}
+            >
+              <option value="date">Date</option>
+              <option value="amount">Amount</option>
+            </select>
+          </div>
+
+          <div className="input-group__item">
+            <DateRangePicker
+              startDate={filters.startDate}
+              startDateId="startDate"
+              endDate={filters.endDate}
+              endDateId="endDate"
+              onDatesChange={handleDatesChange}
+              focusedInput={calendarFocused}
+              onFocusChange={this.handleFocusChange}
+              showDefaultInputIcon={true}
+              withFullScreenPortal={true}
+              keepOpenOnDateSelect={true}
+              showClearDates={true}
+              hideKeyboardShortcutsPanel={true}
+              numberOfMonths={1}
+              isOutsideRange={() => false}
+            />
+          </div>
+        </div>
       </div>
     );
   }
@@ -95,4 +106,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ExpenseListFilters);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ExpenseListFilters);

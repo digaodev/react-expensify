@@ -10,14 +10,23 @@ import ExpenseForm from './ExpenseForm';
 const EditExpense = ({ editingExpense, onSubmit, handleRemove }) => {
   return (
     <div>
-      <h1>Edit Expense</h1>
-      <hr />
-      <h2>Editing "{editingExpense.description}"</h2>
-      <ExpenseForm onSubmit={onSubmit} expense={editingExpense} />
+      <div className="page-header">
+        <div className="content-container">
+          <h1 className="page-header__title">Edit Expense</h1>
+          <h2>Editing "{editingExpense.description}"</h2>
+        </div>
+      </div>
+      <div className="content-container">
+        <ExpenseForm onSubmit={onSubmit} expense={editingExpense} />
 
-      <button type="button" onClick={() => handleRemove(editingExpense.id)}>
-        Remove
-      </button>
+        <button
+          type="button"
+          className="button button--secondary"
+          onClick={() => handleRemove(editingExpense.id)}
+        >
+          Remove Expense
+        </button>
+      </div>
     </div>
   );
 };
@@ -43,4 +52,7 @@ const mapDispatchToProps = (dispatch, { history, match }) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditExpense);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EditExpense);

@@ -79,52 +79,52 @@ class ExpenseForm extends Component {
     const { expense } = this.props;
 
     return (
-      <div>
-        {error && <p>{error}</p>}
+      <form className="form" onSubmit={this.handleSubmit}>
+        {error && <p className="form__error">{error}</p>}
+        <input
+          type="text"
+          placeholder="Description"
+          className="text-input"
+          autoFocus
+          value={description}
+          onChange={e => this.handleDescriptionChange(e.target.value)}
+        />
 
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            placeholder="Description"
-            autoFocus
-            value={description}
-            onChange={e => this.handleDescriptionChange(e.target.value)}
-          />
+        <input
+          type="number"
+          placeholder="Amount"
+          className="text-input"
+          value={amount}
+          onChange={e => this.handleAmountChange(e.target.value)}
+        />
 
-          <input
-            type="number"
-            placeholder="Amount"
-            value={amount}
-            onChange={e => this.handleAmountChange(e.target.value)}
-          />
+        <SingleDatePicker
+          date={createdAt} // momentPropTypes.momentObj or null
+          onDateChange={date => this.handleDateChange(date)} // PropTypes.func.isRequired
+          focused={calendarFocused} // PropTypes.bool
+          onFocusChange={({ focused }) => this.handleDateFocusChange(focused)} // PropTypes.func.isRequired
+          id="formDatePicker" // PropTypes.string.isRequired,
+          showDefaultInputIcon={true}
+          withFullScreenPortal={true}
+          numberOfMonths={1}
+          isOutsideRange={() => false}
+        />
 
-          <SingleDatePicker
-            date={createdAt} // momentPropTypes.momentObj or null
-            onDateChange={date => this.handleDateChange(date)} // PropTypes.func.isRequired
-            focused={calendarFocused} // PropTypes.bool
-            onFocusChange={({ focused }) => this.handleDateFocusChange(focused)} // PropTypes.func.isRequired
-            id="formDatePicker" // PropTypes.string.isRequired,
-            showDefaultInputIcon={true}
-            withFullScreenPortal={true}
-            numberOfMonths={1}
-            isOutsideRange={() => false}
-          />
+        <textarea
+          name="noteInput"
+          id="noteInput"
+          cols="30"
+          rows="10"
+          placeholder="Add a note for your expense (optional)"
+          className="textarea"
+          value={note}
+          onChange={e => this.handleNoteChange(e.target.value)}
+        />
 
-          <textarea
-            name="noteInput"
-            id="noteInput"
-            cols="30"
-            rows="10"
-            placeholder="Add a note for your expense (optional)"
-            value={note}
-            onChange={e => this.handleNoteChange(e.target.value)}
-          />
-
-          <button type="submit">
-            {expense ? 'Update Expense' : 'Add Expense'}
-          </button>
-        </form>
-      </div>
+        <button type="submit" className="button">
+          {expense ? 'Update Expense' : 'Add Expense'}
+        </button>
+      </form>
     );
   }
 }

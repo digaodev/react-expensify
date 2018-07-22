@@ -8,9 +8,9 @@ import ExpensesSummary from './ExpensesSummary';
 const ExpenseDashboard = () => (
   <div>
     <ExpensesSummary />
-    <hr />
+
     <ExpenseListFilters />
-    <hr />
+
     <VisibleExpenseList />
   </div>
 );
