@@ -45,11 +45,11 @@ To get started:
     "uuid": "^3.2.1"
 ```
 
-* in order to use the app you will need a firebase account. Create one [here](https://firebase.google.com/). Go to the console and create a new app (remember to save your app's settings, we will use later for configuration within the app). Add the Firebase Realtime Database to your web app.
+* in order to use the app you will need a firebase account. Create one [here](https://firebase.google.com/). Go to the console and create a new app (remember to save your app's settings, we will use later for configuration within the app). Add the `Firebase Realtime Database` to your web app.
 
 * if you are planning on running the test suite, please create a separate web app to avoid messing up the data and permissions.
 
-* create 2 .env files, one for development (`.env.development`) and one for tests (`.env.test`) and add your web app configuration. You can find them in your firebase console:
+* create 2 `.env` files, one for development (`.env.development`) and one for tests (`.env.test`) and add your web app configuration. You can find them in your firebase console:
 
 ```js
 REACT_APP_FIREBASE_API_KEY=<YOUR API KEY>
@@ -62,7 +62,9 @@ REACT_APP_FIREBASE_MESSAGING_SENDER_ID=<YOUR APP MESSAGING ID>
 
 * because the project was created using `create-react-app`, there are a few caveats to consider when using `.env`. You can read about it [here](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-custom-environment-variables)
 
-* you can add an extra layer of security and data validation to your database. If you do this to your test database you will break the test suite. For your development web app database, add these lines to your database `rules` tab on the firebase console:
+* enable the Google sign-in provider in the `Sign-in method` tab in `Authentication` on the firebase console.
+
+* you can add an extra layer of security and data validation to your database. If you do this to your test database you will break the test suite. For your development web app database, add these lines to your database `Rules` tab in `Database` on the firebase console:
 
 ```json
 {
@@ -102,11 +104,9 @@ REACT_APP_FIREBASE_MESSAGING_SENDER_ID=<YOUR APP MESSAGING ID>
 }
 ```
 
-* 
-
 * run the project tests with `yarn test`
 
-![Screen Shot for tests](https://github.com/digaodev/react-expensify/blob/docs/docs/Screen_tests.png.png?raw=true)
+![Screen Shot for tests](https://github.com/digaodev/react-expensify/blob/docs/docs/Screen_tests.png?raw=true)
 
 * start the development server with `yarn start`
 
